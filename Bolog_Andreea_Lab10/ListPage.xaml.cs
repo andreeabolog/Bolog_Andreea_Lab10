@@ -17,4 +17,12 @@ namespace Bolog_Andreea_Lab10
             InitializeComponent();
         }
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        var shopl = (ShopList)BindingContext;
+
+        listView.ItemsSource = await App.Database.GetListProductsAsync(shopl.ID);
+    }
 }
